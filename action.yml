@@ -1,6 +1,6 @@
 
 name: 'DBMaestro Jar Checkout Action'
-description: 'Chechouts DBmaestroAgent.jar with a specific version'
+description: 'Checkouts DBmaestroAgent.jar with a specific version'
 inputs:
   version:  
     description: 'version to checkout'
@@ -13,15 +13,9 @@ inputs:
  
 runs:
   using: "composite"
-  steps:
-    - name: Create Manifest and Package
-      shell: PowerShell
-      run: |
-            cd ${{ inputs.target_path }}
-            if (!(Test-Path -Path "${{ inputs.target_path }}dbm-agent-jar\\")) {
-              git clone https://github.com/sergioldbm/dbm-agent-jar.git
-            } else {
-              cd ".\\dbm-agent-jar"
-              git fetch
-              git checkout tags/${{ inputs.version }}
-            }
+  steps: 
+  - name: Checkout repository 
+    uses: actions/checkout@v2 
+    with: 
+      path: ${{inputs.target_path}}
+      ref: refs/tags/${{inputs.version}}
