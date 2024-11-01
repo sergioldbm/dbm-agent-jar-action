@@ -17,5 +17,6 @@ runs:
   - name: Checkout repository 
     uses: actions/checkout@v2 
     with: 
+      repository: DBMaestroDev/dbm_jar
       path: ${{inputs.target_path}}
       ref: refs/tags/${{inputs.version}}
