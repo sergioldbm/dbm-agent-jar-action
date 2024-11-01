@@ -18,4 +18,4 @@ runs:
     uses: actions/checkout@v2 
     with: 
       path: ${{inputs.target_path}}
-      ref: tags/${{inputs.version}}
+      ref: refs/tags/${{inputs.version}}
